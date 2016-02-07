@@ -7,22 +7,26 @@ function render(n) {
   div.innerHTML = '';
   drawBoard(rows, div);
 
+  //int -> [[int]]
   function allSolutions(n) {
     return (iterate([[]], concatMap(extendSolution))(n))[n];
   }
 
+  // [int] -> [[int]]
   function extendSolution(partialSolution) {
     return [0,1,2,3,4,5,6,7].filter(okToAdd(partialSolution))
       .map(pushStart(partialSolution));
   }
 
+  //[int] -> int -> bool
   function okToAdd(partialSolution) {
     return function (pos) {
-      return all([succ, pred, id], okToAddGivenDir(pos, partialSolution));
+      return all([succ, pred, id], okToAddGivenDir(partialSolution, pos));
     };
   }
 
-  function okToAddGivenDir(pos, partialSolution){
+  //int -> [int] -> fn -> bool
+  function okToAddGivenDir(partialSolution, pos){
     return function(dirFn) {
       return and(
           zipWith(
@@ -31,7 +35,6 @@ function render(n) {
   }
 }
 function onInputChange(event) {
-  console.log(event.target.value);
   render(event.target.value);
 }
 
@@ -50,7 +53,6 @@ function drawBoard(rows, div) {
     row.classList.add('row');
     var icon;
     var rowBreak = document.createElement('br');
-    console.log(pos);
     for(var i = 0; i < 8; ++i) {
       icon = document.createElement('span');
       icon.classList.add('square');
