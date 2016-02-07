@@ -1,0 +1,28 @@
+#board{
+  margin-top: 5px;
+  display: block;
+  font-family: monospace;
+  font-size: 0px;
+  width: 400px;
+  height: 400px;
+  border: 1px;
+  border-style: solid;
+  border-color: black;
+}
+.row{
+  display: flex;
+  margin: 0;
+  height: 50px;
+}
+.square{
+  font-size: 50px;
+  vertical-align: middle;
+  text-align: center; 
+  display: inline-block;
+  width: 50px;
+  height: 100%;
+  line-height: 100%;
+}
+.queen:after{
+  content: '♕';
+}
