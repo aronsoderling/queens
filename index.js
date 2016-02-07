@@ -1,7 +1,6 @@
 function render(n) {
   if(!n) n = 0
   var rows = allSolutions(8)[n];
-  console.log(rows);
 
   var div = document.getElementById('board');
   div.innerHTML = '';
@@ -25,7 +24,7 @@ function render(n) {
     };
   }
 
-  //int -> [int] -> fn -> bool
+  //[int] -> int -> fn -> bool
   function okToAddGivenDir(partialSolution, pos){
     return function(dirFn) {
       return and(
